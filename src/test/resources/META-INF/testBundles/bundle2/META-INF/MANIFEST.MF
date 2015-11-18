@@ -1,7 +1,0 @@
-Manifest-Version: 1.0
-Bundle-ManifestVersion: 2
-Bundle-SymbolicName: org.everit.osgi.liquibase.bundle.tests.bundle2
-Bundle-Version: 1.0.0
-Provide-Capability: liquibase.schema;name=carandperson;resource=/META-INF/liquibase/car.xml;lqmg.config.resource=/META-INF/liquibase/carandperson.lqmg.xml,
-  liquibase.schema;name=doubledCap;resource=/META-INF/liquibase/doubledCap.xml,
-  liquibase.schema;name=doubledCap;version=2;resource=/META-INF/liquibase/doubledCap.xml
