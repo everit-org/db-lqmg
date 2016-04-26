@@ -22,7 +22,7 @@
         http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd"
   objectQuotingStrategy="QUOTE_ALL_OBJECTS" logicalFilePath="org.everit.osgi.liquibase.bundle.tests.myApp">
 
-  <include file="carandperson.eosgi" relativeToChangelogFile="false" />
+  <include file="carandperson.osgi" relativeToChangelogFile="false" />
 
   <changeSet id="1" author="everit">
     <createTable tableName="car_registration">

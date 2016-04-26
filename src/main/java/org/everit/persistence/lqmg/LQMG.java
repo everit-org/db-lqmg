@@ -30,6 +30,7 @@ import java.util.logging.Logger;
 
 import org.eclipse.osgi.framework.internal.core.FrameworkProperties;
 import org.everit.persistence.liquibase.ext.osgi.EOSGiResourceAccessor;
+import org.everit.persistence.liquibase.ext.osgi.LiquibaseEOSGiConstants;
 import org.everit.persistence.liquibase.ext.osgi.util.BundleResource;
 import org.everit.persistence.liquibase.ext.osgi.util.LiquibaseOSGiUtil;
 import org.everit.persistence.lqmg.internal.ConfigPath;
@@ -62,12 +63,6 @@ import liquibase.resource.ResourceAccessor;
  * This class responsible for generate QueryDSL JAVA classes.
  */
 public final class LQMG {
-
-  public static final String CAPABILITY_ATTR_SCHEMA_NAME = "name";
-
-  public static final String CAPABILITY_ATTR_SCHEMA_RESOURCE = "resource";
-
-  public static final String CAPABILITY_LIQUIBASE_SCHEMA = "liquibase.schema";
 
   public static final String CAPABILITY_LQMG_CONFIG_RESOURCE = "lqmg.config.resource";
 
@@ -141,7 +136,8 @@ public final class LQMG {
 
   private static void exportMetaData(final GenerationProperties parameters,
       final Connection connection, final ConfigurationContainer configurationContainer)
-          throws SQLException {
+      throws SQLException {
+
     LOGGER.log(Level.INFO, "Start meta data export.");
 
     MetaDataExporter metaDataExporter = new MetaDataExporter();
@@ -152,7 +148,6 @@ public final class LQMG {
     metaDataExporter.setNamePrefix("");
     metaDataExporter.setNameSuffix("");
     metaDataExporter.setNamingStrategy(namingStrategy);
-    metaDataExporter.setSchemaToPackage(true);
     metaDataExporter.setTargetFolder(new File(parameters.targetFolder));
     metaDataExporter.setInnerClassesForKeys(parameters.innerClassesForKeys);
     metaDataExporter.export(connection.getMetaData());
@@ -257,8 +252,8 @@ public final class LQMG {
   }
 
   private static Framework startOSGiContainer(final String[] bundleLocations,
-      final String tempDirPath)
-          throws BundleException {
+      final String tempDirPath) throws BundleException {
+
     FrameworkFactory frameworkFactory = ServiceLoader
         .load(FrameworkFactory.class).iterator().next();
 
@@ -347,7 +342,8 @@ public final class LQMG {
           new EOSGiResourceAccessor(bundle, bundleCapabilityAttributes);
 
       String schemaResource =
-          (String) bundleCapabilityAttributes.get(LiquibaseOSGiUtil.ATTR_SCHEMA_RESOURCE);
+          (String) bundleCapabilityAttributes
+              .get(LiquibaseEOSGiConstants.CAPABILITY_ATTR_RESOURCE);
       Liquibase liquibase = new Liquibase(schemaResource, resourceAccessor, database);
 
       ConfigurationContainer configContainer = new ConfigurationContainer();
