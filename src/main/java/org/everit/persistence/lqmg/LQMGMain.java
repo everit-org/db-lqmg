@@ -70,7 +70,7 @@ public final class LQMGMain {
         "Package names separated by comma that should be generated."
             + " If not defined, all packages will be generated.");
     options.addOption("cp", ARG_CAPABILITY, true,
-        "Expression that is used to select the first schema based on the"
+        "Expression that is used to select the first capability based on the"
             + " capabilities that are provided by the bundles.");
     options.addOption("o", ARG_OUTPUT_FOLDER, true, "Path of the folder where the classes should be"
         + " generated");
