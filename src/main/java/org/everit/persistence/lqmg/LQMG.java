@@ -148,6 +148,7 @@ public final class LQMG {
     metaDataExporter.setNamePrefix("");
     metaDataExporter.setNameSuffix("");
     metaDataExporter.setNamingStrategy(namingStrategy);
+    metaDataExporter.setSchemaToPackage(true);
     metaDataExporter.setTargetFolder(new File(parameters.targetFolder));
     metaDataExporter.setInnerClassesForKeys(parameters.innerClassesForKeys);
     metaDataExporter.export(connection.getMetaData());
