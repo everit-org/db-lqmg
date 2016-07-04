@@ -356,7 +356,15 @@ public final class LQMG {
       ChangeExecListener lqmgChangeExecListener = new LQMGChangeExecListener(configContainer);
       liquibase.setChangeExecListener(lqmgChangeExecListener);
 
-      liquibase.update((String) null);
+      String contexts = parameters.contexts;
+
+      if (contexts == null || "".equals(contexts.trim())) {
+        contexts = "lqmg";
+      } else {
+        contexts += ",lqmg";
+      }
+
+      liquibase.update(contexts);
       LOGGER.log(Level.INFO, "Finish LiquiBase and update.");
 
       LQMG.exportMetaData(parameters, connection, configContainer);
@@ -368,7 +376,6 @@ public final class LQMG {
       throw new LQMGException(
           "Error during try to connection the database.", e);
     } catch (LiquibaseException e) {
-      // liquibase.update(null);
       LOGGER.log(Level.SEVERE, e.getMessage(), e);
       throw new LQMGException(
           "Error during processing XML file; "

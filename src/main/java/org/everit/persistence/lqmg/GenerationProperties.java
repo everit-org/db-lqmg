@@ -38,6 +38,11 @@ public class GenerationProperties {
   public String configurationPath;
 
   /**
+   * Comma separated list of contexts Liquibase is running under.
+   */
+  public String contexts;
+
+  /**
    * Default schema on SQL Connection to be used during generating tables.
    */
   public String defaultSchema;
@@ -87,6 +92,10 @@ public class GenerationProperties {
 
   public void setConfigurationPath(final String configurationPath) {
     this.configurationPath = configurationPath;
+  }
+
+  public void setContexts(final String contexts) {
+    this.contexts = contexts;
   }
 
   public void setDefaultSchema(final String defaultSchema) {
