@@ -186,8 +186,7 @@ public class LQMGNamingStrategy extends DefaultNamingStrategy {
 
     String simpleName = getClassName(schemaAndTable);
     if (simpleName == null) {
-      throw new LQMGException("Cannot resolve class name for '" + schemaAndTable.getTable()
-          + "' table in '" + schemaAndTable.getSchema() + "' schema.", null);
+      return super.getPackage(basePackage, schemaAndTable);
     }
 
     ConfigValue<? extends AbstractNamingRuleType> configValue =

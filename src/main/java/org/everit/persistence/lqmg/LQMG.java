@@ -85,7 +85,7 @@ public final class LQMG {
   }
 
   private static String createDataBaseURL(final String defaultSchema) {
-    StringBuilder sb = new StringBuilder("jdbc:h2:mem:");
+    StringBuilder sb = new StringBuilder("jdbc:h2:mem:;DATABASE_TO_UPPER=false");
     if (defaultSchema != null) {
       sb.append(";INIT=CREATE SCHEMA IF NOT EXISTS \"").append(defaultSchema)
           .append("\"\\;SET SCHEMA \"")
